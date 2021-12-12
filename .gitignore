@@ -1,2 +1,5 @@
 # Untrack Video Files
 *.mp4
+
+# Untrack Folders
+/Zip
