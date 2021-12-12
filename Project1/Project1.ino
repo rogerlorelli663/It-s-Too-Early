@@ -15,8 +15,8 @@ String st1 = "";         // incoming serial byte
 String defaultRead = "";
 int insideSensorValue = 0;  // variable to store the value coming from the sensor
 int outsideSensorValue = 0;  // variable to store the value coming from the sensor
-int upperThreshold = 90;
-int lowerThreshold = 50;
+int upperThreshold = 900;
+int lowerThreshold = 900;
 bool closed = false;
 int IRpin = 2;
 int insideLeftPin = A0;
@@ -70,12 +70,20 @@ void autoOpenCurtain()
 }
 
 // Debugging print
-void printThresholds()
+void printThresholds(bool received)
 {
+  if(received)
+  {
+    Serial.println("----------Received-----------");
+  }
   Serial.print("Upper Threshold: ");
   Serial.println(upperThreshold);
   Serial.print("Lower Threshold: ");
   Serial.println(lowerThreshold);
+  if(received)
+  {
+    Serial.println("-----------------------------");
+  }
 }
 
 // read from 4 sensors, 2 out and 2 in. Take the average of each paired set and save.
@@ -132,7 +140,7 @@ void loop() {
       radio.read(&text, sizeof(text));
       str = String(text);
       lowerThreshold = str.toInt();
-      printThresholds();
+      printThresholds(true);
     }
   if (IrReceiver.decode()) {
     IrReceiver.printIRResultShort(&Serial);
@@ -163,7 +171,7 @@ void loop() {
   {
     
     readSensor();
-    printThresholds();
+    printThresholds(false);
     Serial.print("Outside: ");
     Serial.println(outsideSensorValue);
     Serial.print("Inside: ");
@@ -180,6 +188,6 @@ void loop() {
       autoCloseCurtain();
       Serial.println("---------Closed---------");
     }
-    delay(2000);
+    delay(4000);
   }
 }
