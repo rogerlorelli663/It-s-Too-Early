@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<style>
+table, th, td {border:1px solid black;}
+</style>
+<body>
+<form action="phptopython.php" method="get">
+Upper Threshold:
+<input type="integer" name="threshold1"/>
+<br>
+Lower Threshold:
+<input type="integer" name="threshold2"/>
+<br>
+<input type="submit" value="Submit"/>
+</form>
+<form action="tableclear.php" method="get">
+<input type="submit" value="Clear Table"/>
+</form>
+<h1 align="center">
+Log
+</h1>
+<table align="center">
+<tr>
+<th>
+Upper Threshold
+</th>
+<th>
+Lower Threshold
+</th>
+<th>
+Date
+</th>
+</tr>
+<tr>
+<td>
+900
+</td>
+<td>
+900
+</td>
+<td>
+Default
+</td>
+</tr>
+</table>
+</body>
+</html>
